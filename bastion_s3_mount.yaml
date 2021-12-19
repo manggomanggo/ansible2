@@ -21,29 +21,23 @@
           - name: Clone s3fs source code from git
             git:
                     repo: https://github.com/s3fs-fuse/s3fs-fuse.git
-                    dest: /home/ec2-user/s3fs-fuse
+                    dest: /root/s3fs-fuse
                     clone: true
                     force: true
           - name: autogen
             shell:
                     cmd: ./autogen.sh
-                    chdir: /home/ec2-user/s3fs-fuse
+                    chdir: /root/s3fs-fuse
           - name: openssl
             shell:
-                    cmd: ./configure --prefix=/usr --with-openssl
-                    chdir: /home/ec2-user/s3fs-fuse
-          - name: Build
-            make:
-                    chdir: /home/ec2-user/s3fs-fuse
-          - name: Run install
-            make:
-                    chdir: /home/ec2-user/s3fs-fuse
-                    target: install    
-          - name: mkdir mys3bucket
-            file:
-                    path: /home/ec2-user/mys3bucket
-                    state: directory      
+                    cmd: ./configure
+                    chdir: /root/s3fs-fuse
+          - name: make install
+            shell: make install
+            args:
+                    executable: /bin/bash 
+          - name: mkdir s3-bucket
+            shell: sudo mkdir /s3-bucket     
           - name: mount
-            shell:
-                    cmd: s3fs {{ project_name }}-log-bucket -o iam_role="{{ project_name }}-role-bastion" -o endpoint={{ project_region }} -o allow_other -o use_cache=/tmp -o uid=1000 -o mp_umask=002 /home/ec2-user/mys3bucket
-                    chdir: /home/ec2-user/s3fs-fuse
+            shell: /usr/local/bin/s3fs {{ project_name }}-log-bucket /s3fs
+                    executable: /bin/bash
