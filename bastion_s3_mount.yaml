@@ -5,7 +5,7 @@
           - variable.yaml
   become: true
   tasks:      
-          - name: install dependencies
+          - name: install package
             yum:
                     name: 
                         - automake 
@@ -28,16 +28,22 @@
             shell:
                     cmd: ./autogen.sh
                     chdir: /root/s3fs-fuse
-          - name: openssl
+          - name: configure
             shell:
                     cmd: ./configure
                     chdir: /root/s3fs-fuse
-          - name: make install
-            shell: make install
+          - name: Build
+            make:
+                    chdir: /root/s3fs-fuse
+          - name: install
+            make:
+                    chdir: /root/s3fs-fuse
+                    target: install
+          - name: mkdir s3bucket
+            shell: mkdir -p /s3bucket
             args:
-                    executable: /bin/bash 
-          - name: mkdir s3-bucket
-            shell: sudo mkdir /s3-bucket     
+                    executable: /bin/bash
           - name: mount
-            shell: /usr/local/bin/s3fs {{ project_name }}-log-bucket /s3fs
+            shell: /usr/local/bin/s3fs {{ project_name }}-log-bucket /s3bucket
+            args:
                     executable: /bin/bash
