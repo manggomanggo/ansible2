@@ -1,6 +1,6 @@
 ---
 - name: s3_bucket_connect
-  hosts: _web
+  hosts: localhost
   vars_files:
           - variable.yaml
   become: true

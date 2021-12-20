@@ -9,7 +9,7 @@
                     name: '{{ project_name }}-efs'
             register: efs
 - name: was efs
-  hosts: _was
+  hosts: localhost
   become: true
   vars_files:
           - variable.yaml
