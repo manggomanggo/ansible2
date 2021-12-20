@@ -21,29 +21,29 @@
           - name: Clone s3fs source code from git
             git:
                     repo: https://github.com/s3fs-fuse/s3fs-fuse.git
-                    dest: /root/s3fs-fuse
+                    dest: /home/ec2-user/s3fs-fuse
                     clone: true
                     force: true
           - name: autogen
             shell:
                     cmd: ./autogen.sh
-                    chdir: /root/s3fs-fuse
+                    chdir: /home/ec2-user/s3fs-fuse
           - name: configure
             shell:
                     cmd: ./configure
-                    chdir: /root/s3fs-fuse
+                    chdir: /home/ec2-user/s3fs-fuse
           - name: Build
             make:
-                    chdir: /root/s3fs-fuse
+                    chdir: /home/ec2-user/s3fs-fuse
           - name: install
             make:
-                    chdir: /root/s3fs-fuse
+                    chdir: /home/ec2-user/s3fs-fuse
                     target: install
           - name: mkdir s3bucket
-            shell: mkdir -p /s3bucket
+            shell: mkdir -p /home/ec2-user/s3bucket
             args:
                     executable: /bin/bash
           - name: mount
-            shell: /usr/local/bin/s3fs {{ project_name }}-log-bucket123 /s3bucket
+            shell: /usr/local/bin/s3fs {{ project_name }}-log-bucket123 /home/ec2-user/s3bucket
             args:
                     executable: /bin/bash

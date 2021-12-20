@@ -1,0 +1,13 @@
+---
+- name: s3_log_web
+  hosts: _web
+  become: true
+  vars_files:
+          - variable.yaml
+  vars:
+          ansible_ssh_private_key_file: ./id_rsa
+  tasks:
+          - name: web logs s3 upload
+            shell: sudo cp -r /etc/httpd/logs /home/ec2-user/s3bucket/web_logs
+            args:
+                    executable: /bin/bash
