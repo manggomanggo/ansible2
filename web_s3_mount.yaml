@@ -40,7 +40,7 @@
                     chdir: /home/ec2-user/s3fs-fuse
                     target: install
           - name: mkdir s3bucket
-            shell: mkdir -p /home/ec2-user/s3bucket
+            shell: mkdir /home/ec2-user/s3bucket
             args:
                     executable: /bin/bash
           - name: mount
