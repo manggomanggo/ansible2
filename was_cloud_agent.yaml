@@ -34,11 +34,6 @@
                                                                     "log_stream_name": "WAS/{instance_id}/var/log/messages"
                                                             },
                                                             {
-                                                                    "file_path": "/usr/share/tomcat/logs/localhost_access_log.2021-12-21.log",
-                                                                    "log_group_name": '{{ project_name }}-log-group',
-                                                                    "log_stream_name": "WAS/{instance_id}/tomcat/logs/localhost_access_log"
-                                                            },
-                                                            {
                                                                     "file_path": "/usr/share/tomcat/logs/catalina.out",
                                                                     "log_group_name": '{{ project_name }}-log-group',
                                                                     "log_stream_name": "WAS/{instance_id}/tomcat/logs/catalina.out"

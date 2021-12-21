@@ -34,11 +34,6 @@
                                                                     "log_stream_name": "WEB/{instance_id}/var/log/messages"
                                                             },
                                                             {
-                                                                    "file_path": "/var/log/httpd/access_log",
-                                                                    "log_group_name": '{{ project_name }}-log-group',
-                                                                    "log_stream_name": "WEB/{instance_id}/var/log/httpd/access_log"
-                                                            },
-                                                            {
                                                                     "file_path": "/var/log/httpd/error_log",
                                                                     "log_group_name": '{{ project_name }}-log-group',
                                                                     "log_stream_name": "WEB/{instance_id}/var/log/httpd/error_log"
