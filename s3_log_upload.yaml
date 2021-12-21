@@ -8,6 +8,6 @@
           ansible_ssh_private_key_file: ./id_rsa
   tasks:
           - name: web logs s3 upload
-            shell: sudo cp -r /etc/httpd/logs /home/ec2-user/s3bucket/web_logs
+            shell: sudo cp -r /var/log/httpd/ /home/ec2-user/s3bucket/web_log
             args:
                     executable: /bin/bash
