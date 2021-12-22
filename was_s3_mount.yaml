@@ -4,7 +4,7 @@
   vars_files:
           - variable.yaml
   become: true
-  tasks:      
+  tasks:  
           - name: install package
             yum:
                     name: 
@@ -44,6 +44,6 @@
             args:
                     executable: /bin/bash
           - name: mount
-            shell: /usr/local/bin/s3fs {{ project_name }}-log-bucket123 /home/ec2-user/s3bucket
+            shell: /usr/local/bin/s3fs {{ project_name }}-log-bucket3979 /home/ec2-user/s3bucket
             args:
                     executable: /bin/bash
