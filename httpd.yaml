@@ -6,10 +6,10 @@
   tasks:
           - elb_application_lb_info:
                     region: ap-northeast-2
-                    names: wafo-nlb
+                    names: cd-nlb
             register: nlb
 - name: web
-  hosts: _wafo_web
+  hosts: _cd_web
   become: true
   vars_files:
           - variable.yaml
@@ -41,6 +41,8 @@
                                     Order deny,allow
                                     Allow from all
                             </Proxy>
+                            ProxyPass /tomcat http://{{ item }}:8080/
+                            ProxyPass /redis http://{{ item }}:8080/test.jsp
                             ProxyPass /petclinic http://{{ item }}:8080/petclinic
                             ProxyPassReverse / http://{{ item }}:8080/
                     insertbefore: "^</VirtualHost>$"

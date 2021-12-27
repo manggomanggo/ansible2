@@ -9,7 +9,7 @@
                   db_instance_identifier: '{{ project_name }}'
             register: rds
 - name: was
-  hosts: _wafo_was
+  hosts: _cd_was
   become: true
   vars_files:
     - variable.yaml
