@@ -1,4 +1,4 @@
-# vim agent.yaml #안쓰는거
+# vim agent.yaml #안쓰는2
 ---
 - name: Agent install
   hosts: aws_ec2
